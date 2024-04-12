@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:49:56 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/12 18:55:38 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ int	main(int argc, char *argv[])
 	t_list	*stack_a;
 
 	stack_a = create_stack(argc, argv);
-	ft_lstiter(stack_a, print_content);
 	if (!stack_a)
-		return 1; // TODO: Print error message
+	{
+		ft_putendl_fd("Error", 2);
+		return 1;
+	}
+
+	ft_lstiter(stack_a, print_content);
 
 	// TODO: Sort stack
 	// TODO: Optimize commands
 	// TODO: Print commands
+
+	return 0;
 }
