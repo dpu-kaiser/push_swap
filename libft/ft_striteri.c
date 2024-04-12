@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Created: 2024/03/10 11:24:32 by dkaiser           #+#    #+#             */
+/*   Updated: 2024/03/10 13:19:39 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <stdlib.h>
+#include "libft.h"
 
-enum	e_pscmd
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-};
+	unsigned int	i;
 
-t_list	*create_stack(int argc, char *argv[]);
-
-#endif // PUSH_SWAP_H
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

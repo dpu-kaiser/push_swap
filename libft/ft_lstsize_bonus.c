@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Created: 2024/03/10 15:35:38 by dkaiser           #+#    #+#             */
+/*   Updated: 2024/03/10 16:36:09 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <stdlib.h>
+#include "libft.h"
 
-enum	e_pscmd
+int	ft_lstsize(t_list *lst)
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-};
+	int	len;
 
-t_list	*create_stack(int argc, char *argv[]);
-
-#endif // PUSH_SWAP_H
+	if (!lst)
+		return (0);
+	len = 1;
+	while (lst->next)
+	{
+		lst = lst->next;
+		len++;
+	}
+	return (len);
+}

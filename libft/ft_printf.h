@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Created: 2024/03/12 18:19:47 by dkaiser           #+#    #+#             */
+/*   Updated: 2024/03/15 13:33:09 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <stdlib.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-enum	e_pscmd
-{
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-};
+# include <stdarg.h>
+# include <unistd.h>
 
-t_list	*create_stack(int argc, char *argv[]);
-
-#endif // PUSH_SWAP_H
+int	ft_printf(const char *fmt, ...);
+int	ft_printnbr(int nbr);
+int	ft_printunbr(unsigned int nbr);
+int	ft_printhex(unsigned int nbr, char fmt);
+int	ft_printaddr(void *addr);
+#endif // FT_PRINTF_H

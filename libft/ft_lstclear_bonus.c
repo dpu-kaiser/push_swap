@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Created: 2024/03/10 16:26:23 by dkaiser           #+#    #+#             */
+/*   Updated: 2024/03/11 12:48:24 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <stdlib.h>
+#include "libft.h"
 
-enum	e_pscmd
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-};
+	t_list	*current;
+	t_list	*next;
 
-t_list	*create_stack(int argc, char *argv[]);
-
-#endif // PUSH_SWAP_H
+	if (*lst)
+	{
+		current = *lst;
+		while (current->next)
+		{
+			next = current->next;
+			ft_lstdelone(current, del);
+			current = next;
+		}
+		ft_lstdelone(current, del);
+	}
+	*lst = NULL;
+}

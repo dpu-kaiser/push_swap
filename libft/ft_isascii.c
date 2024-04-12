@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Created: 2024/03/04 21:23:25 by dkaiser           #+#    #+#             */
+/*   Updated: 2024/03/04 21:24:46 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <stdlib.h>
-
-enum	e_pscmd
+int	ft_isascii(int c)
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-};
-
-t_list	*create_stack(int argc, char *argv[]);
-
-#endif // PUSH_SWAP_H
+	if (c >= 0 && c < 128)
+		return (1);
+	return (0);
+}

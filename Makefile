@@ -1,25 +1,35 @@
 NAME = push_swap
 
+LIBFT = libft
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC_FILES = main.c
+SRC_FILES = main.c input_handling.c
 OBJ_FILES = $(SRC_FILES:%.c=%.o)
+
+LIB_DIR = $(LIBFT)
+LIB = ft
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	$(CC) -I. $(CFLAGS) $^ -o $@
+$(NAME): $(OBJ_FILES) | libft
+	$(CC) $(CFLAGS) -I. -L$(LIB_DIR) -l$(LIB) $^ -o $@
 
 %.o: %.c
-	$(CC) -I. $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 clean:
+	make clean -C $(LIBFT)
 	rm -f $(OBJ_FILES)
 
 fclean: clean
+	make fclean -C $(LIBFT)
 	rm -f $(NAME)
+
+libft:
+	make all bonus -C $(LIBFT)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean libft re

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Created: 2024/03/10 14:57:39 by dkaiser           #+#    #+#             */
+/*   Updated: 2024/03/11 12:52:00 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-# include <stdlib.h>
+#include "libft.h"
 
-enum	e_pscmd
+t_list	*ft_lstnew(void *content)
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-};
+	t_list	*result;
 
-t_list	*create_stack(int argc, char *argv[]);
+	result = malloc(sizeof(t_list));
+	if (!result)
+		return (NULL);
+	result->content = content;
+	result->next = NULL;
+	return (result);
+}
 
-#endif // PUSH_SWAP_H
+/* #include <stdio.h> */
+/* int main() { */
+/*     t_list l; */
+/*     char s[] = "Hello"; */
+
+/*     l = *ft_lstnew(&s); */
+/*     printf("%s\n", l.content); */
+/* } */
