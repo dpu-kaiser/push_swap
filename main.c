@@ -6,12 +6,10 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 14:56:18 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 15:04:10 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
-#include "libft/libft.h"
 #include "push_swap.h"
 
 static void	print_content(void *content)
@@ -33,6 +31,9 @@ int	main(int argc, char *argv[])
 	}
 	stack_b = NULL;
 	pscmds = NULL;
+
+	stack_sort(&stack_a, &stack_b, &pscmds);
+
 
 	// TODO: Optimize commands
 	ft_printf("A:");
