@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 15:27:07 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 17:18:58 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ enum	e_pscmd
 	RR,
 	RRA,
 	RRB,
-	RRR
+	RRR,
+	NO_CMD
 };
 
 t_list	*create_stack(int argc, char *argv[]);
@@ -42,6 +43,7 @@ void	run_command(t_list **stack_a, t_list **stack_b, t_list **cmds,
 void	print_commands(t_list *cmds);
 
 void	stack_optimize(t_list **stack);
+void	optimize_commands(t_list **cmds);
 
 void	stack_sort(t_list **stack_a, t_list **stack_b, t_list **cmds);
 

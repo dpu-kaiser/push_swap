@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 15:32:03 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 16:58:36 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	main(int argc, char *argv[])
 	pscmds = NULL;
 	stack_optimize(&stack_a);
 	stack_sort(&stack_a, &stack_b, &pscmds);
-	// TODO: Optimize commands
+	optimize_commands(&pscmds);
 	print_commands(pscmds);
 	ft_printf("A:");
 	ft_lstiter(stack_a, print_content);
 	ft_printf("\nB:");
 	ft_lstiter(stack_b, print_content);
-	ft_printf("\n");
+	ft_printf("\nExecuted %d push_swap commands.\n", ft_lstsize(pscmds));
 	return (0);
 }
