@@ -6,10 +6,11 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:38:47 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 14:39:09 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 14:43:45 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "push_swap.h"
 
 static int	add_cmd_to_queue(t_list **cmds, enum e_pscmd cmd)
@@ -96,4 +97,5 @@ static void	print_cmd(void *ptr_cmd)
 
 void	print_commands(t_list *cmds)
 {
+    ft_lstiter(cmds, print_cmd);
 }
