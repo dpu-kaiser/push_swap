@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:31:49 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:49:38 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 14:58:42 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	are_numbers_unique(t_list *stack)
 	while (stack->next)
 	{
 		cmp_elem = stack->next;
-		while (cmp_elem->next)
+		while (cmp_elem)
 		{
 			if (*(int *)stack->content == *(int *)cmp_elem->content)
 				return (0);
