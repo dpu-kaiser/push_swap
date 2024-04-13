@@ -6,11 +6,10 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:38:47 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 14:43:45 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 14:47:55 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
 static int	add_cmd_to_queue(t_list **cmds, enum e_pscmd cmd)
@@ -21,6 +20,7 @@ static int	add_cmd_to_queue(t_list **cmds, enum e_pscmd cmd)
 	ptr_cmd = malloc(sizeof(enum e_pscmd));
 	if (!ptr_cmd)
 		return (1);
+    *ptr_cmd = cmd;
 	new_elem = ft_lstnew(ptr_cmd);
 	if (!new_elem)
 	{
