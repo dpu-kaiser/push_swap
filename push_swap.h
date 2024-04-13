@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/12 18:15:21 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 14:33:46 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,13 @@ enum	e_pscmd
 };
 
 t_list	*create_stack(int argc, char *argv[]);
+
+void	stack_swap(t_list **stack);
+void	stack_push(t_list **dst_stack, t_list **src_stack);
+void	stack_rotate(t_list **stack);
+void	stack_rrotate(t_list **stack);
+
+void	run_command(t_list **stack_a, t_list **stack_b, t_list **cmds,
+			enum e_pscmd cmd);
 
 #endif // PUSH_SWAP_H
