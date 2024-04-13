@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 15:31:05 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/13 15:32:03 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char *argv[])
 	}
 	stack_b = NULL;
 	pscmds = NULL;
+	stack_optimize(&stack_a);
 	stack_sort(&stack_a, &stack_b, &pscmds);
 	// TODO: Optimize commands
 	print_commands(pscmds);
