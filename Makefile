@@ -14,7 +14,7 @@ LIB = ft
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) | libft
-	$(CC) $(CFLAGS) -I. -L$(LIB_DIR) -l$(LIB) $^ -o $@
+	$(CC) $(CFLAGS) -I. $^ -o $@ -L$(LIB_DIR) -l$(LIB)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I. -c $< -o $@
