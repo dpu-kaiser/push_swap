@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:25:05 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 16:33:23 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/15 12:03:44 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	override_stack(t_list **stack, int *tmp_array)
 	}
 }
 
-void	stack_optimize(t_list **stack)
+int	stack_optimize(t_list **stack)
 {
 	int		size;
 	int		*tmp_array;
@@ -65,7 +65,7 @@ void	stack_optimize(t_list **stack)
 	cur = *stack;
 	tmp_array = malloc(size * sizeof(int));
 	if (!tmp_array)
-		; // TODO: Error handling
+		return 1;
 	i = 0;
 	while (cur)
 	{
@@ -73,8 +73,12 @@ void	stack_optimize(t_list **stack)
 		cur = cur->next;
 	}
 	if (i != size)
-		; // TODO: Error handling
+	{
+		free(tmp_array);
+		return 1;
+	}
 	sort_array(size, tmp_array);
 	i = 0;
 	override_stack(stack, tmp_array);
+	return 0;
 }
