@@ -6,17 +6,36 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:25:05 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 12:03:44 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/15 16:20:51 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
-static void	sort_array(int size, int *tmp_array)
+static int *copy_stack(int *stack, int size)
 {
-	int	i;
-	int	k;
-	int	tmp;
+	int i;
+	int *cpy;
+
+	cpy = malloc(sizeof(int) * size);
+	if (!cpy)
+		return NULL;
+	i = 0;
+	while (i < size)
+	{
+		cpy[i] = stack[i];
+		i++;
+	}
+
+	return cpy;
+}
+
+static void sort_stack(int *stack, int size)
+{
+	int i;
+	int k;
+	int tmp;
 
 	i = 0;
 	while (i < size - 1)
@@ -24,11 +43,11 @@ static void	sort_array(int size, int *tmp_array)
 		k = i + 1;
 		while (k < size)
 		{
-			if (tmp_array[i] > tmp_array[k])
+			if (stack[i] > stack[k])
 			{
-				tmp = tmp_array[i];
-				tmp_array[i] = tmp_array[k];
-				tmp_array[k] = tmp;
+				tmp = stack[i];
+				stack[i] = stack[k];
+				stack[k] = tmp;
 			}
 			k++;
 		}
@@ -36,49 +55,31 @@ static void	sort_array(int size, int *tmp_array)
 	}
 }
 
-static void	override_stack(t_list **stack, int *tmp_array)
+static void override_stack(int *stack, int *tmp_stack, int size)
 {
-	t_list	*cur;
-	int		content;
-	int		i;
+	int i;
+	int k;
 
-	cur = *stack;
-	while (cur)
+	i = 0;
+	while (i < size)
 	{
-		i = 0;
-		content = *(int *)cur->content;
-		while (content != tmp_array[i])
-			i++;
-		*(int *)cur->content = i;
-		cur = cur->next;
+		k = 0;
+		while (stack[i] != tmp_stack[k])
+			k++;
+		stack[i] = k;
+		i++;
 	}
 }
 
-int	stack_optimize(t_list **stack)
+int	stack_optimize(t_stack *stack)
 {
-	int		size;
-	int		*tmp_array;
-	t_list	*cur;
-	int		i;
+	int *tmp_stack;
 
-	size = ft_lstsize(*stack);
-	cur = *stack;
-	tmp_array = malloc(size * sizeof(int));
-	if (!tmp_array)
+	tmp_stack = copy_stack(stack->stack, stack->size);
+	if (!tmp_stack)
 		return 1;
-	i = 0;
-	while (cur)
-	{
-		tmp_array[i++] = *(int *)cur->content;
-		cur = cur->next;
-	}
-	if (i != size)
-	{
-		free(tmp_array);
-		return 1;
-	}
-	sort_array(size, tmp_array);
-	i = 0;
-	override_stack(stack, tmp_array);
+	sort_stack(tmp_stack, stack->size);
+	override_stack(stack->stack, tmp_stack, stack->size);
+	free(tmp_stack);
 	return 0;
 }

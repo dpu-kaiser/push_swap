@@ -6,21 +6,17 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 16:58:36 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/15 17:53:19 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/ft_printf.h"
 #include "push_swap.h"
-
-static void	print_content(void *content)
-{
-	ft_printf("%d ", *(int *)content);
-}
 
 int	main(int argc, char *argv[])
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 	t_list	*pscmds;
 
 	stack_a = create_stack(argc, argv);
@@ -29,16 +25,25 @@ int	main(int argc, char *argv[])
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	stack_b = NULL;
-	pscmds = NULL;
-	stack_optimize(&stack_a);
-	stack_sort(&stack_a, &stack_b, &pscmds);
-	optimize_commands(&pscmds);
+
+	stack_b = malloc(sizeof(t_stack));
+	if (!stack_b)
+	{
+		//free everything
+	}
+	stack_b->stack = malloc(sizeof(int) * (argc - 1));
+	if (!stack_b->stack)
+	{
+		//free everything
+	}
+	stack_b->size = 0;
+	stack_optimize(stack_a);
+	pscmds = stack_sort(stack_a, stack_b);
+	/* optimize_commands(&pscmds); */
 	print_commands(pscmds);
-	ft_printf("A:");
-	ft_lstiter(stack_a, print_content);
-	ft_printf("\nB:");
-	ft_lstiter(stack_b, print_content);
-	ft_printf("\nExecuted %d push_swap commands.\n", ft_lstsize(pscmds));
+	ft_printf("\nA: ");
+	stack_print(stack_a);
+	ft_printf("B: ");
+	stack_print(stack_b);
 	return (0);
 }

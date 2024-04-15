@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 12:02:20 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/15 17:41:05 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,27 @@ enum	e_pscmd
 	NO_CMD
 };
 
-t_list	*create_stack(int argc, char *argv[]);
+typedef struct s_stack
+{
+	int *stack;
+	int size;
+} t_stack;
 
-void	stack_swap(t_list **stack);
-void	stack_push(t_list **dst_stack, t_list **src_stack);
-void	stack_rotate(t_list **stack);
-void	stack_rrotate(t_list **stack);
+t_stack	*create_stack(int argc, char *argv[]);
 
-void	run_command(t_list **stack_a, t_list **stack_b, t_list **cmds,
+void	stack_swap(t_stack *stack);
+void	stack_push(t_stack *dst_stack, t_stack *src_stack);
+void	stack_rotate(t_stack *stack);
+void	stack_rrotate(t_stack *stack);
+void stack_print(t_stack *stack);
+
+void	run_command(t_stack *stack_a, t_stack *stack_b, t_list **cmds,
 			enum e_pscmd cmd);
 void	print_commands(t_list *cmds);
 
-int	stack_optimize(t_list **stack);
+int	stack_optimize(t_stack *stack);
 void	optimize_commands(t_list **cmds);
 
-void	stack_sort(t_list **stack_a, t_list **stack_b, t_list **cmds);
+t_list	*stack_sort(t_stack *stack_a, t_stack *stack_b);
 
 #endif // PUSH_SWAP_H

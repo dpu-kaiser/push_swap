@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:38:47 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 14:47:55 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/15 16:35:05 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static int	add_cmd_to_queue(t_list **cmds, enum e_pscmd cmd)
 	return (0);
 }
 
-static void	run_for_both(t_list **stack_a, t_list **stack_b,
-		void (*f)(t_list **))
+static void	run_for_both(t_stack *stack_a, t_stack *stack_b,
+		void (*f)(t_stack *))
 {
 	f(stack_a);
 	f(stack_b);
 }
 
-void	run_command(t_list **stack_a, t_list **stack_b, t_list **cmds,
+void	run_command(t_stack *stack_a, t_stack *stack_b, t_list **cmds,
 		enum e_pscmd cmd)
 {
 	if (cmd == SA)
