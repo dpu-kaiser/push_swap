@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:31:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 17:27:04 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/15 21:53:40 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	stack_push(t_stack *dst_stack, t_stack *src_stack)
 {
 	int i;
 
-	i = dst_stack->size - 1;
+	i = dst_stack->size;
 	while (i > 0)
 	{
 		dst_stack->stack[i] = dst_stack->stack[i-1];
