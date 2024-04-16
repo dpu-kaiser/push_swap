@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 09:22:00 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 09:35:54 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 
 static void free_data(t_psdata *data)
 {
-	if (data->a)
+	if (data)
 	{
-		if (data->a->stack)
-			free(data->a->stack);
-		free(data->a);
+		if (data->a)
+		{
+			if (data->a->stack)
+				free(data->a->stack);
+			free(data->a);
+		}
+		if (data->b)
+		{
+			if (data->b->stack)
+				free(data->b->stack);
+			free(data->b);
+		}
+		free(data);
 	}
-	if (data->b)
-	{
-		if (data->b->stack)
-			free(data->b->stack);
-		free(data->b);
-	}
-	free(data);
 }
 
 static t_psdata *initialize_data(int argc, char *argv[])
@@ -67,7 +70,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	stack_optimize(data->a);
-	data->cmds = stack_sort(data->a, data->b);
+	stack_sort(data);
 	/* optimize_commands(&pscmds); */
 	print_commands(data->cmds);
 	ft_printf("\nA: ");
