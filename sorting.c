@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:04:19 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 23:39:57 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 09:27:53 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,30 @@ int is_sorted(t_stack *stack)
 }
 
 
-t_list	*stack_sort(t_stack *stack_a, t_stack *stack_b)
+void stack_sort(t_psdata *data)
 {
-    t_list *cmds = NULL;
     int pivot;
-
-    int pivot_idx = stack_a->size - 1;
-    while (stack_b->size || !is_sorted(stack_a))
+    int pivot_idx;
+    
+    data->cmds = NULL;
+    pivot_idx = data->a->size - 1;
+    while (data->b->size || !is_sorted(data->a))
     {
-        pivot = stack_a->stack[pivot_idx];
+        pivot = data->a->stack[pivot_idx];
 
-        while (stack_a->size > 0 && stack_a->stack[0] != pivot)
+        while (data->a->size > 0 && data->a->stack[0] != pivot)
         {
-            if (stack_a->stack[0] > pivot)
-                run_command(stack_a, stack_b, &cmds, RA);
+            if (data->a->stack[0] > pivot)
+                run_command(data, RA);
             else
-                run_command(stack_a, stack_b, &cmds, PB);
+                run_command(data, PB);
         }
-        while (stack_b->size > 0)
-            run_command(stack_a, stack_b, &cmds, PA);
-        if (stack_a->stack[pivot_idx] == pivot)
+        while (data->b->size > 0)
+            run_command(data, PA);
+        if (data->a->stack[pivot_idx] == pivot)
             pivot_idx--;
         if (pivot_idx < 0)
-            pivot_idx = stack_a->size - 1;
+            pivot_idx = sdata->a->size - 1;
     }
     return cmds;
 }

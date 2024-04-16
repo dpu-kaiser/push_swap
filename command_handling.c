@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:38:47 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 16:35:05 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 09:27:41 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,31 @@ static void	run_for_both(t_stack *stack_a, t_stack *stack_b,
 	f(stack_b);
 }
 
-void	run_command(t_stack *stack_a, t_stack *stack_b, t_list **cmds,
-		enum e_pscmd cmd)
+void	run_command(t_psdata *data, enum e_pscmd cmd)
 {
 	if (cmd == SA)
-		stack_swap(stack_a);
+		stack_swap(data->a);
 	else if (cmd == SB)
-		stack_swap(stack_b);
+		stack_swap(data->b);
 	else if (cmd == SS)
-		run_for_both(stack_a, stack_b, stack_swap);
+		run_for_both(data->a, data->b, stack_swap);
 	else if (cmd == PA)
-		stack_push(stack_a, stack_b);
+		stack_push(data->a, data->b);
 	else if (cmd == PB)
-		stack_push(stack_b, stack_a);
+		stack_push(data->b, data->a);
 	else if (cmd == RA)
-		stack_rotate(stack_a);
+		stack_rotate(data->a);
 	else if (cmd == RB)
-		stack_rotate(stack_b);
+		stack_rotate(data->b);
 	else if (cmd == RR)
-		run_for_both(stack_a, stack_b, stack_rotate);
+		run_for_both(data->a, data->b, stack_rotate);
 	else if (cmd == RRA)
-		stack_rrotate(stack_a);
+		stack_rrotate(data->a);
 	else if (cmd == RRB)
-		stack_rrotate(stack_b);
+		stack_rrotate(data->b);
 	else if (cmd == RRR)
-		run_for_both(stack_a, stack_b, stack_rrotate);
-	add_cmd_to_queue(cmds, cmd);
+		run_for_both(data->a, data->b, stack_rrotate);
+	add_cmd_to_queue(&data->cmds, cmd);
 }
 
 static void	print_cmd(void *ptr_cmd)
