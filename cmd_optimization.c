@@ -6,49 +6,13 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:42:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/13 17:31:18 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 10:32:28 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "libft/libft.h"
 #include "push_swap.h"
-
-/* void	optimize_commands(t_list **cmds) */
-/* { */
-/* 	int		optimizations; */
-/* 	t_list	*cur; */
-/*     t_list *last; */
-
-/* 	optimizations = 0; */
-/* 	cur = *cmds; */
-/*     last = NULL; */
-/* 	while (cur->next) */
-/* 	{ */
-/* 		if ((*(enum e_pscmd *)cur->content == PA */
-/* 				&& *(enum e_pscmd *)cur->next->content == PB) */
-/* 			|| (*(enum e_pscmd *)cur->content == PA */
-/* 				&& *(enum e_pscmd *)cur->next->content == PB)) */
-/* 		{ */
-/*             if (last) */
-/*                 last->next = cur->next->next; */
-/*             else */
-/*                 (*cmds)->next = cur->next->next; */
-/*             ft_lstdelone(cur->next, free); */
-/*             ft_lstdelone(cur, free); */
-/*             optimizations++; */
-/*         } */
-/*         if (!optimizations) */
-/*         { */
-/*             last = cur; */
-/*             cur = cur->next; */
-/*         } */
-/*         else */
-/*             break; */
-/* 	} */
-/* 	if (optimizations) */
-/* 		optimize_commands(cmds); */
-/* } */
 
 static enum e_pscmd get_cmd(t_list *cmd)
 {
@@ -58,13 +22,13 @@ static enum e_pscmd get_cmd(t_list *cmd)
         return NO_CMD;
 }
 
-void optimize_commands(t_list **cmds)
+void optimize_commands(t_psdata *data)
 {
     t_list *cur;
     t_list *last;
     int optimizations;
 
-    cur = *cmds;
+    cur = data->cmds;
     last = cur;
     optimizations = 0;
 
@@ -81,5 +45,5 @@ void optimize_commands(t_list **cmds)
         cur = last->next;
     }
     if (optimizations)
-        optimize_commands(cmds);
+        optimize_commands(data);
 }
