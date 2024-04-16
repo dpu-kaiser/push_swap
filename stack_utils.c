@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 20:31:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 21:53:40 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 16:48:32 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,23 @@ void	stack_push(t_stack *dst_stack, t_stack *src_stack)
 {
 	int i;
 
-	i = dst_stack->size;
-	while (i > 0)
-	{
-		dst_stack->stack[i] = dst_stack->stack[i-1];
-		i--;
+	if (src_stack->size > 0) {
+		i = dst_stack->size;
+		while (i > 0)
+		{
+			dst_stack->stack[i] = dst_stack->stack[i-1];
+			i--;
+		}
+		dst_stack->stack[0] = src_stack->stack[0];
+		dst_stack->size++;
+		i = 1;
+		while (i < src_stack->size)
+		{
+			src_stack->stack[i-1] = src_stack->stack[i];
+			i++;
+		}
+		src_stack->size--;
 	}
-	dst_stack->stack[0] = src_stack->stack[0];
-	dst_stack->size++;
-	i = 1;
-	while (i < src_stack->size)
-	{
-		src_stack->stack[i-1] = src_stack->stack[i];
-		i++;
-	}
-	src_stack->size--;
 }
 
 void	stack_rotate(t_stack *stack)
