@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 17:41:05 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 09:25:17 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct s_stack
 	int size;
 } t_stack;
 
+typedef struct s_psdata
+{
+	t_stack *a;
+	t_stack *b;
+	t_list *cmds;
+} t_psdata;
+
 t_stack	*create_stack(int argc, char *argv[]);
 
 void	stack_swap(t_stack *stack);
@@ -45,13 +52,12 @@ void	stack_rotate(t_stack *stack);
 void	stack_rrotate(t_stack *stack);
 void stack_print(t_stack *stack);
 
-void	run_command(t_stack *stack_a, t_stack *stack_b, t_list **cmds,
-			enum e_pscmd cmd);
+void	run_command(t_psdata *data, enum e_pscmd cmd);
 void	print_commands(t_list *cmds);
 
 int	stack_optimize(t_stack *stack);
-void	optimize_commands(t_list **cmds);
+void	optimize_c/*   Updated: 2024/04/15 17:54:23 by dkaiser          ###   ########.fr       */ommands(t_list **cmds);
 
-t_list	*stack_sort(t_stack *stack_a, t_stack *stack_b);
+void	stack_sort(t_psdata *data);
 
 #endif // PUSH_SWAP_H
