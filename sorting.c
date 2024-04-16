@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:04:19 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 09:27:53 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 09:55:31 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void stack_sort(t_psdata *data)
         if (data->a->stack[pivot_idx] == pivot)
             pivot_idx--;
         if (pivot_idx < 0)
-            pivot_idx = sdata->a->size - 1;
+            pivot_idx = data->a->size - 1;
     }
-    return cmds;
 }
