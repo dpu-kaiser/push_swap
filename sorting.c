@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:04:19 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 09:55:31 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 11:20:43 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void stack_sort(t_psdata *data)
 
         while (data->a->size > 0 && data->a->stack[0] != pivot)
         {
-            if (data->a->stack[0] > pivot)
+            if (data->a->size > 1 && data->a->stack[0] > pivot)
                 run_command(data, RA);
-            else
+            else if (data->a->size > 0)
                 run_command(data, PB);
         }
         while (data->b->size > 0)

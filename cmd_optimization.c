@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:42:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 10:32:28 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 13:15:34 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static enum e_pscmd get_cmd(t_list *cmd)
         return NO_CMD;
 }
 
-void optimize_commands(t_psdata *data)
+static void optimize_redundant_pushes(t_psdata *data)
 {
     t_list *cur;
     t_list *last;
@@ -45,5 +45,67 @@ void optimize_commands(t_psdata *data)
         cur = last->next;
     }
     if (optimizations)
-        optimize_commands(data);
+        optimize_redundant_pushes(data);
+}
+
+static void fake_command(t_psdata *data, enum e_pscmd cmd)
+{
+    if (cmd == PA)
+    {
+        data->a->size++;
+        data->b->size--;
+    }
+    else if (cmd == PB)
+    {
+        data->a->size--;
+        data->b->size++;
+    }
+}
+
+static void optimize_rotate(t_psdata *data)
+{
+    t_list *cur;
+    t_list *last_before;
+    t_list *first_after;
+    enum e_pscmd *cmd;
+    int i;
+
+    cur = data->cmds;
+    while(cur)
+    {
+        if (get_cmd(cur->next) == RA)
+        {
+            last_before = cur;
+            cur = cur->next;
+            i = 0;
+            while (cur && get_cmd(cur) == RA)
+            {
+                i++;
+                cur = cur->next;
+            }
+            first_after = cur;
+            if (i >= (data->a->size - 1) / 2)
+            {
+                cmd = malloc(sizeof(enum e_pscmd));
+                *cmd = RRA;
+                cur = last_before->next;
+                while (i < data->a->size)
+                {
+                    cur->next = ft_lstnew(cmd);
+                    cur = cur->next;
+                    i++;
+                }
+                cur->next = first_after;
+                ft_printf("i: %d\n", i);
+            }
+        }
+        fake_command(data, get_cmd(cur));
+        cur = cur->next;
+    }
+}
+
+void optimize_commands(t_psdata *data)
+{
+    optimize_redundant_pushes(data);
+    optimize_rotate(data);
 }

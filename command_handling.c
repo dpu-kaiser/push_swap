@@ -6,10 +6,11 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:38:47 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 09:27:41 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/16 12:12:48 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "push_swap.h"
 
 static int	add_cmd_to_queue(t_list **cmds, enum e_pscmd cmd)
@@ -92,6 +93,8 @@ static void	print_cmd(void *ptr_cmd)
 		ft_putendl_fd("rrb", 1);
 	else if (cmd == RRR)
 		ft_putendl_fd("rrr", 1);
+	else
+		ft_putendl_fd("NO CMD", 1);
 }
 
 void	print_commands(t_list *cmds)
