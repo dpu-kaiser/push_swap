@@ -6,7 +6,11 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2024/04/15 17:53:19 by dkaiser          ###   ########.fr       */
+=======
+/*   Updated: 2024/04/17 09:42:43 by dkaiser          ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +29,7 @@ int	main(int argc, char *argv[])
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
+<<<<<<< Updated upstream
 
 	stack_b = malloc(sizeof(t_stack));
 	if (!stack_b)
@@ -45,5 +50,15 @@ int	main(int argc, char *argv[])
 	stack_print(stack_a);
 	ft_printf("B: ");
 	stack_print(stack_b);
+=======
+	stack_optimize(data->a);
+	stack_sort(data);
+	optimize_commands(data);
+	print_commands(data->cmds);
+	/* ft_printf("\nA: "); */
+	/* stack_print(data->a); */
+	/* ft_printf("B: "); */
+	/* stack_print(data->b); */
+>>>>>>> Stashed changes
 	return (0);
 }
