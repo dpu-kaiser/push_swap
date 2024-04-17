@@ -6,51 +6,69 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2024/04/15 17:53:19 by dkaiser          ###   ########.fr       */
-=======
 /*   Updated: 2024/04/17 09:42:43 by dkaiser          ###   ########.fr       */
->>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "push_swap.h"
 
+static void free_data(t_psdata *data)
+{
+	if (data)
+	{
+		if (data->a)
+		{
+			if (data->a->stack)
+				free(data->a->stack);
+			free(data->a);
+		}
+		if (data->b)
+		{
+			if (data->b->stack)
+				free(data->b->stack);
+			free(data->b);
+		}
+		free(data);
+	}
+}
+
+static t_psdata *initialize_data(int argc, char *argv[])
+{
+	t_psdata *result;
+
+	result = malloc(sizeof(t_psdata));
+	if (result)
+	{
+		result->a = create_stack(argc, argv);
+		if (result->a)
+		{
+			result->b = malloc(sizeof(t_stack));
+			if (result->b)
+			{
+				result->b->stack = malloc(sizeof(int) * (argc - 1));
+				if (result->b->stack)
+				{
+					result->b->size = 0;
+					return result;
+				}
+			}
+		}
+	}
+	free_data(result);
+	return NULL;
+}
+
 int	main(int argc, char *argv[])
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_list	*pscmds;
+	t_psdata *data;
 
-	stack_a = create_stack(argc, argv);
-	if (!stack_a)
+	data = initialize_data(argc, argv);
+	if (!data)
 	{
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-<<<<<<< Updated upstream
-
-	stack_b = malloc(sizeof(t_stack));
-	if (!stack_b)
-	{
-		//free everything
-	}
-	stack_b->stack = malloc(sizeof(int) * (argc - 1));
-	if (!stack_b->stack)
-	{
-		//free everything
-	}
-	stack_b->size = 0;
-	stack_optimize(stack_a);
-	pscmds = stack_sort(stack_a, stack_b);
-	/* optimize_commands(&pscmds); */
-	print_commands(pscmds);
-	ft_printf("\nA: ");
-	stack_print(stack_a);
-	ft_printf("B: ");
-	stack_print(stack_b);
-=======
 	stack_optimize(data->a);
 	stack_sort(data);
 	optimize_commands(data);
@@ -59,6 +77,5 @@ int	main(int argc, char *argv[])
 	/* stack_print(data->a); */
 	/* ft_printf("B: "); */
 	/* stack_print(data->b); */
->>>>>>> Stashed changes
 	return (0);
 }
