@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:42:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/17 09:41:10 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/17 12:15:41 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void optimize_commands(t_psdata *data)
 {
     optimize_redundant(data, PA, PB);
     optimize_redundant(data, RB, RRB);
+    optimize_redundant(data, RA, RRA);
     optimize_two_stack_ops(data, RA, RB, RR);
 }

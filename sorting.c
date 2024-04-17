@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:04:19 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/17 11:50:56 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/17 12:20:26 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,51 @@ static int calculate_score(t_psdata *data, int pos)
     return moves_to_top + moves_to_spot;
 }
 
-static void move_to_right_spot(t_psdata *data, int idx)
-{
 
+
+static void move_to_top(t_psdata *data, int idx)
+{
+    if (idx < (data->b->size + 1) / 2)
+    {
+        while (idx--)
+            run_command(data, RB);
+    }
+    else
+    {
+        idx = data->b->size - idx;
+        while (idx--)
+            run_command(data, RRB);
+    }
+}
+
+static void move_to_spot(t_psdata *data)
+{
+    int pos;
+    int i;
+
+    pos = 0;
+    while (pos < data->a->size && data->b->stack[0] < data->a->stack[pos])
+        pos++;
+    if (pos < (data->a->size + 1) / 2)
+    {
+        i = pos;
+        while (i--)
+            run_command(data, RA);
+        run_command(data, PA);
+        i = pos;
+        while (i--)
+            run_command(data, RRA);
+    }
+    else
+    {
+        i = data->a->size - pos;
+        while (i--)
+            run_command(data, RRA);
+        run_command(data, PA);
+        i = data->a->size - pos;
+        while (i--)
+            run_command(data, RA);
+    }
 }
 
 static void scoresort(t_psdata *data)
@@ -84,7 +126,8 @@ static void scoresort(t_psdata *data)
             min_score = i;
         i++;
     }
-    move_to_right_spot(data, min_score);
+    move_to_top(data, min_score);
+    move_to_spot(data);
 
     free(scores);
     if (data->b->size > 0)
