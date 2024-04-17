@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 17:54:56 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/17 09:42:43 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	main(int argc, char *argv[])
 	}
 	stack_optimize(data->a);
 	stack_sort(data);
-	/* optimize_commands(data); */
-	/* print_commands(data->cmds); */
+	optimize_commands(data);
+	print_commands(data->cmds);
 	/* ft_printf("\nA: "); */
 	/* stack_print(data->a); */
 	/* ft_printf("B: "); */
