@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:04:19 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/17 10:50:01 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/17 11:50:56 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,62 @@ static void presort(t_psdata *data)
     }
 }
 
+static int calculate_score(t_psdata *data, int pos)
+{
+    int moves_to_top;
+    int moves_to_spot;
+    int i;
+
+    if (pos < (data->b->size + 1) / 2)
+        moves_to_top = pos;
+    else
+        moves_to_top = data->b->size - pos;
+    i = 0;
+    while (i < data->a->size && data->a->stack[i] < data->b->stack[pos])
+        i++;
+    if (i < (data->a->size + 1) / 2)
+        moves_to_spot = 2 * i + 1;
+    else
+        moves_to_spot = 2 * ((data->a->size - i) + 1);
+    return moves_to_top + moves_to_spot;
+}
+
+static void move_to_right_spot(t_psdata *data, int idx)
+{
+
+}
+
+static void scoresort(t_psdata *data)
+{
+    int *scores;
+    int i;
+    int min_score;
+
+    scores = malloc(sizeof(int) * data->b->size);
+    // Error if allocation fails
+    i = 0;
+    while (i < data->b->size)
+    {
+        scores[i] = calculate_score(data, i);
+        i++;
+    }
+    i = 0;
+    min_score = 0;
+    while (i < data->b->size)
+    {
+        if (scores[i] < scores[min_score])
+            min_score = i;
+        i++;
+    }
+    move_to_right_spot(data, min_score);
+
+    free(scores);
+    if (data->b->size > 0)
+        scoresort(data);
+}
+
 void stack_sort(t_psdata *data)
 {
     presort(data);
+    scoresort(data);
 }
