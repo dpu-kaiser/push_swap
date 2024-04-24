@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:42:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/24 10:58:14 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/24 13:11:45 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	optimize_redundant(t_psdata *data, enum e_pscmd cmd1,
 	cur = data->cmds;
 	last = cur;
 	optimizations = 0;
-	if (!cur)
-		return ;
 	while (cur && cur->next)
 	{
 		if ((get_cmd(cur) == cmd1 && get_cmd(cur->next) == cmd2)
@@ -64,8 +62,6 @@ static void	optimize_two_stack_ops(t_psdata *data, enum e_pscmd cmd1,
 	cur = data->cmds;
 	last = cur;
 	optimizations = 0;
-	if (!cur)
-		return ;
 	while (cur && cur->next)
 	{
 		if ((get_cmd(cur) == cmd1 && get_cmd(cur->next) == cmd2)

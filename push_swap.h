@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/24 10:59:05 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:28:04 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,9 @@ int			stack_optimize(t_stack *stack);
 void		optimize_commands(t_psdata *data);
 
 void		stack_sort(t_psdata *data);
+int			is_sorted(t_stack *stack);
+int			calculate_score(t_psdata *data, int pos);
+void		move_to_top(t_psdata *data, int idx);
+void		move_to_spot(t_psdata *data, int idx);
 
 #endif // PUSH_SWAP_H

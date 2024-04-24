@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/24 10:58:59 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:31:46 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,17 @@ int	main(int argc, char *argv[])
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	stack_optimize(data->a);
-	stack_sort(data);
-	optimize_commands(data);
-	print_commands(data->cmds);
-	/* ft_printf("\nA: "); */
-	/* stack_print(data->a); */
-	/* ft_printf("B: "); */
-	/* stack_print(data->b); */
+	if (!is_sorted(data->a))
+	{
+		stack_optimize(data->a);
+		stack_sort(data);
+		if (!is_sorted(data->a) || data->b->size)
+		{
+			ft_putendl_fd("Error", 2);
+			return (1);
+		}
+		optimize_commands(data);
+		print_commands(data->cmds);
+	}
 	return (0);
 }
