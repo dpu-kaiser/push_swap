@@ -6,12 +6,28 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 15:04:19 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/24 13:48:31 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:03:00 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "push_swap.h"
+
+int	is_sorted(t_stack *stack)
+{
+	int	i;
+
+	if (stack->size < 2)
+		return (1);
+	i = 1;
+	while (i < stack->size)
+	{
+		if (stack->stack[i] < stack->stack[i - 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static void	presort(t_psdata *data)
 {
