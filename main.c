@@ -6,14 +6,14 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:03:30 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/17 09:42:43 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/24 10:58:59 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/ft_printf.h"
 #include "push_swap.h"
 
-static void free_data(t_psdata *data)
+static void	free_data(t_psdata *data)
 {
 	if (data)
 	{
@@ -33,9 +33,9 @@ static void free_data(t_psdata *data)
 	}
 }
 
-static t_psdata *initialize_data(int argc, char *argv[])
+static t_psdata	*initialize_data(int argc, char *argv[])
 {
-	t_psdata *result;
+	t_psdata	*result;
 
 	result = malloc(sizeof(t_psdata));
 	if (result)
@@ -50,18 +50,18 @@ static t_psdata *initialize_data(int argc, char *argv[])
 				if (result->b->stack)
 				{
 					result->b->size = 0;
-					return result;
+					return (result);
 				}
 			}
 		}
 	}
 	free_data(result);
-	return NULL;
+	return (NULL);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_psdata *data;
+	t_psdata	*data;
 
 	data = initialize_data(argc, argv);
 	if (!data)
