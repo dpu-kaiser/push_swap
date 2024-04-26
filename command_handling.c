@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 14:38:47 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/16 09:27:41 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/26 13:55:07 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	add_cmd_to_queue(t_list **cmds, enum e_pscmd cmd)
 	ptr_cmd = malloc(sizeof(enum e_pscmd));
 	if (!ptr_cmd)
 		return (1);
-    *ptr_cmd = cmd;
+	*ptr_cmd = cmd;
 	new_elem = ft_lstnew(ptr_cmd);
 	if (!new_elem)
 	{
@@ -96,5 +96,5 @@ static void	print_cmd(void *ptr_cmd)
 
 void	print_commands(t_list *cmds)
 {
-    ft_lstiter(cmds, print_cmd);
+	ft_lstiter(cmds, print_cmd);
 }

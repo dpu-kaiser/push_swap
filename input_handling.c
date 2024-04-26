@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:31:49 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/15 16:24:51 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/26 13:55:13 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	is_input_only_nbrs(int argc, char *argv[])
 
 static int	are_numbers_unique(int *stack, int size)
 {
-	int i;
-	int k;
+	int	i;
+	int	k;
 
 	i = 0;
 	while (i < size - 1)
@@ -54,36 +54,33 @@ static int	are_numbers_unique(int *stack, int size)
 		}
 		i++;
 	}
-
 	return (1);
 }
 
 static int	*get_array_from_input(int argc, char *argv[])
 {
-	int *stack;
-	int i;
+	int	*stack;
+	int	i;
 
 	stack = malloc(sizeof(int) * (argc - 1));
 	if (!stack)
-		return NULL;
-
+		return (NULL);
 	i = 0;
 	while (i < argc - 1)
 	{
 		stack[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
-
 	return (stack);
 }
 
 t_stack	*create_stack(int argc, char *argv[])
 {
-	t_stack *result;
+	t_stack	*result;
 
 	result = malloc(sizeof(t_stack));
 	if (!result)
-		return NULL;
+		return (NULL);
 	if (!is_input_only_nbrs(argc, argv))
 		return (free(result), NULL);
 	result->stack = get_array_from_input(argc, argv);
@@ -96,6 +93,5 @@ t_stack	*create_stack(int argc, char *argv[])
 		return (NULL);
 	}
 	result->size = argc - 1;
-
 	return (result);
 }
