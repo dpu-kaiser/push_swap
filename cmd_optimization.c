@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:42:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/26 13:55:55 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/26 15:52:23 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ static enum e_pscmd	get_cmd(t_list *cmd)
 		return (NO_CMD);
 }
 
+static void	set_last(t_list **last, t_list **cur)
+{
+	*last = (*last)->next;
+	if (*last)
+		*cur = (*last)->next;
+	else
+		*cur = NULL;
+}
+
 static void	optimize_redundant(t_psdata *data, enum e_pscmd cmd1,
 		enum e_pscmd cmd2)
 {
@@ -30,7 +39,10 @@ static void	optimize_redundant(t_psdata *data, enum e_pscmd cmd1,
 	int		optimizations;
 
 	cur = data->cmds;
-	last = cur;
+	last = ft_lstnew(NULL);
+	if (!last)
+		return ;
+	last->next = cur;
 	optimizations = 0;
 	while (cur && cur->next)
 	{
@@ -42,11 +54,7 @@ static void	optimize_redundant(t_psdata *data, enum e_pscmd cmd1,
 			ft_lstdelone(cur, free);
 			optimizations++;
 		}
-		last = last->next;
-		if (last)
-			cur = last->next;
-		else
-			cur = NULL;
+		set_last(&last, &cur);
 	}
 	if (optimizations)
 		optimize_redundant(data, cmd1, cmd2);
@@ -60,7 +68,9 @@ static void	optimize_two_stack_ops(t_psdata *data, enum e_pscmd cmd1,
 	int		optimizations;
 
 	cur = data->cmds;
-	last = cur;
+	last = ft_lstnew(NULL);
+	if (!last)
+		return ;
 	optimizations = 0;
 	while (cur && cur->next)
 	{
@@ -72,11 +82,7 @@ static void	optimize_two_stack_ops(t_psdata *data, enum e_pscmd cmd1,
 			ft_lstdelone(cur, free);
 			optimizations++;
 		}
-		last = last->next;
-		if (last)
-			cur = last->next;
-		else
-			cur = NULL;
+		set_last(&last, &cur);
 	}
 	if (optimizations)
 		optimize_two_stack_ops(data, cmd1, cmd2, new_cmd);

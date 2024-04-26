@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:31:49 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/26 13:55:13 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/26 18:35:38 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	is_nbr(char *str)
 {
 	if (*str == '-')
 		str++;
+	if (!*str)
+		return (0);
 	while (*str)
 	{
 		if (ft_isdigit(*str))
@@ -29,9 +31,14 @@ static int	is_nbr(char *str)
 
 static int	is_input_only_nbrs(int argc, char *argv[])
 {
+	long	nbr;
+
 	while (argc-- > 1)
 	{
 		if (!is_nbr(argv[argc]))
+			return (0);
+		nbr = ft_atol(argv[argc]);
+		if (nbr < -2147483648 || nbr > 2147483647)
 			return (0);
 	}
 	return (1);

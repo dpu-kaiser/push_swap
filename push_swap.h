@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/26 13:54:38 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/26 16:19:46 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_psdata
 }			t_psdata;
 
 t_stack		*create_stack(int argc, char *argv[]);
+long		ft_atol(const char *str);
 
 void		stack_swap(t_stack *stack);
 void		stack_push(t_stack *dst_stack, t_stack *src_stack);
