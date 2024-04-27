@@ -6,7 +6,7 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:59:09 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/26 16:19:46 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/27 14:26:01 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int			stack_optimize(t_stack *stack);
 void		optimize_commands(t_psdata *data);
 
 void		stack_sort(t_psdata *data);
+void		sort_three(t_psdata *data);
+void		sort_few(t_psdata *data);
 
 #endif // PUSH_SWAP_H
