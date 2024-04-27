@@ -6,12 +6,10 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:42:34 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/27 13:51:08 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/27 16:37:28 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/ft_printf.h"
-#include "libft/libft.h"
 #include "push_swap.h"
 
 static enum e_pscmd	get_cmd(t_list *cmd)

@@ -6,11 +6,10 @@
 /*   By: dkaiser <dkaiser@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:31:49 by dkaiser           #+#    #+#             */
-/*   Updated: 2024/04/26 18:35:38 by dkaiser          ###   ########.fr       */
+/*   Updated: 2024/04/27 16:37:52 by dkaiser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
 static int	is_nbr(char *str)
